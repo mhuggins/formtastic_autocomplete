@@ -1,26 +1,32 @@
+require 'active_support/core_ext/hash/deep_merge'
+
 module Formtastic
   module Inputs
     class AutocompleteInput < StringInput
-      def input
-        @builder.text_field(method, input_html_options) <<
-            @builder.hidden_field(method, hidden_html_options)
+      def to_html
+        input_wrapping do
+          label_html <<
+          builder.text_field(method, input_html_options) <<
+          builder.hidden_field(method, hidden_html_options)
+        end
       end
 
       private
 
       def input_html_options
-        super.deep_merge(
+        {
+            class: 'autocomplete'
+        }.merge(super).deep_merge(
             name:  '',
-            class: 'autocomplete',
-            id:    options[:id] || input_tag_id,
-            value: options[:value] || input_tag_value,
+            id:    options.key?(:input_html) && options[:input_html].key?(:id) ? options[:input_html][:id] : input_tag_id,
+            value: options.key?(:value) ? options[:value] : input_tag_value,
             data:  { source: options[:source] }
         )
       end
 
       def hidden_html_options
         {
-            value: options[:value] || hidden_tag_value
+            value: options.key?(:value) ? options[:value] : input_tag_value
         }
       end
 
