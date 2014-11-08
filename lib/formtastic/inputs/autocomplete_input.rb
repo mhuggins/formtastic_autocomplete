@@ -26,7 +26,7 @@ module Formtastic
 
       def hidden_html_options
         {
-            value: options.key?(:value) ? options[:value] : input_tag_value
+            value: options.key?(:value) ? options[:value] : hidden_tag_value
         }
       end
 
