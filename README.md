@@ -23,14 +23,14 @@ Or install it yourself as:
 Require the Javascript in your `application.js` (or other preferred) file via sprockets:
 
 ```javascript
-//= require 'formtastic_autocomplete'
+//= require formtastic_autocomplete
 ```
 
-Alternatively import the CSS in your `application.css.scss` (or other preferred) file.  For
+Optionally import the CSS in your `application.css.scss` (or other preferred) file.  For
 sprockets-based apps:
 
 ```javascript
-//= require 'formtastic_autocomplete';
+//= require formtastic_autocomplete
 ```
 
 For SCSS imports:
